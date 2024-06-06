@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1 align="center">Daftar Proyek PT Maju Mundur Perkasa</h1>
+    <ul class="list-group list-group-flush" id="notes">
+        {% for note in user.notes %}
+        <li class="list-group-item">
+            {{ note.project_name }} - {{ note.workers }} workers - {{ note.profit }} profit
+        </li>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="{{ url_for('views.delete_notes') }}">
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-danger">Delete All Projects</button>
+        </div>
+    </form>
+    <hr>
+    <form method="POST">
+        <input type="text" name="project_name" id="project_name" class="form-control" placeholder="Project Name" required>
+        <input type="number" name="workers" id="workers" class="form-control" placeholder="Number of Workers" required>
+        <input type="number" name="profit" id="profit" class="form-control" placeholder="Profit" required>
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Add Project</button>
+        </div>
+    </form>
+    <hr>
+    <form method="POST" action="{{ url_for('views.search') }}">
+        <input type="number" name="worker_limit" id="worker_limit" class="form-control" placeholder="Worker Limit" required>
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-primary">Find Best Projects</button>
+        </div>
+    </form>
+{% endblock %}

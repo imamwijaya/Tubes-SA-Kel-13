@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Results{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 align="center">Project Selection Results</h1>
+    <br>
+    <h2>Greedy Algorithm</h2>
+    {% if best_combination_greedy %}
+    <p>Maximum Profit: {{ max_profit_greedy }}</p>
+    <p>Selected Projects:</p>
+    <ul>
+        {% for project in best_combination_greedy %}
+        <li>{{ project[0] }} - Workers: {{ project[1] }}, Profit: {{ project[2] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No projects selected under the worker limit.</p>
+    {% endif %}
+
+    <br>
+
+    <h2>Brute Force Algorithm</h2>
+    {% if best_combination_bruteforce %}
+    <p>Maximum Profit: {{ max_profit_bruteforce }}</p>
+    <p>Selected Projects:</p>
+    <ul>
+        {% for project in best_combination_bruteforce %}
+        <li>{{ project[0] }} - Workers: {{ project[1] }}, Profit: {{ project[2] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No projects selected under the worker limit.</p>
+    {% endif %}
+</div>
+<br>
+<div align="center">
+    <a href="{{ url_for('views.home') }}" class="btn btn-primary">Back to Home</a>
+</div>
+{% endblock %}
